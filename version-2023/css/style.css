@@ -1,222 +1,107 @@
-body {
-    width: 100%;
-    height: 100vh;
+/* Carte d'éligibilité à la fibre – Hérault (version 2023) */
+
+html, body {
+    height: 100%;
     margin: 0;
-    font-family: 'Open Sans', Arial, sans-serif;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
 }
 
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: "Open Sans", Arial, sans-serif;
+    overflow: hidden;
+}
+
+/* ---------- Bandeau ---------- */
 nav {
     display: flex;
-    flex-direction: row;
-    height: 66px;
-    box-shadow: 0 2px 1px 0 rgba(49, 55, 65, 0.6);
     align-items: center;
     justify-content: space-between;
-    padding: 0 10px;
-    z-index: 10;
-    margin-bottom: 2px;
+    gap: 16px;
+    min-height: 66px;
+    padding: 0 20px;
     background-color: #313741;
+    box-shadow: 0 2px 1px 0 rgba(49, 55, 65, 0.6);
+    z-index: 1000;
 }
 
-h1 {
-    text-align: center;
+nav h1 {
+    margin: 0;
     color: #ffffff;
-    text-transform: uppercase;
+    font-family: "Montserrat", sans-serif;
+    font-size: clamp(16px, 2.6vw, 30px);
     font-weight: 600;
-    font-size: 32px;
-    margin: 0 auto;
-    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
 }
 
-.logo {
-    max-height: 65px;
-    width: 33%;
+.about-link {
+    color: #ffffff;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
 }
 
-@media screen and (min-width: 992px) {
-    .logo {
-        width: 10%;
-    }
+.about-link:hover {
+    text-decoration: underline;
 }
 
-.logo-container {
-    background: #ffffff;
-    width: 33%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-
-.content {
-    flex: 1;
-    display: flex;
-    align-items: stretch;
-}
-
-.sidebar {
-    width: 310px; /* Adjust the width as per your preference */
-    background-color: #333;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    padding-top: 20px;
-}
-
-
-
+/* ---------- Carte ---------- */
 #map {
     flex: 1;
 }
 
-
-
-.sidebar ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    width: 100%;
-}
-
-.sidebar li {
-    padding: 10px;
-    text-align: center;
-    border-bottom: 1px solid #555;
-}
-
-.sidebar li:last-child {
-    border-bottom: none;
-}
-
-/* Your existing CSS styles... */
-
-/* Style for the legend icons (cercles) */
-.legend-icon {
-    width: 16px;
-    height: 16px;
-    display: inline-block;
-    margin-right: 8px;
-    border-radius: 50%; /* Ajouter une bordure arrondie pour créer un cercle */
-}
-
-
-/* Additional styles for the legend */
+/* ---------- Légende ---------- */
 .info.legend {
-    background-color: white;
     padding: 10px;
+    background-color: #ffffff;
+    border-radius: 5px;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
-    border-radius: 5px;
-    line-height: 1.5;
     font-size: 14px;
+    line-height: 1.6;
 }
 
-/* Style for the legend labels */
-.info.legend i {
+.legend-icon {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
     margin-right: 8px;
+    border: 1px solid #000000;
+    border-radius: 50%;
+    vertical-align: middle;
 }
 
-/* Custom styles for the popup content */
-.popup-content {
-    padding: 10px;
-    background-color: #fff;
-    border-radius: 5px;
+/* ---------- Fenêtres d'information ---------- */
+.popup-content p {
+    margin: 4px 0;
 }
 
 .popup-header {
     display: flex;
     align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
 }
 
 .popup-image {
-    max-width: 500px;
-    max-height: 100px;
-    margin-right: 10px;
+    max-width: 90px;
+    max-height: 60px;
 }
 
 .popup-content h2 {
-    font-size: 28px;
-    margin-bottom: 5px;
+    margin: 0;
+    font-size: 18px;
     color: #007bff;
 }
 
-.popup-content p {
-    margin: 0;
+.popup-content h5 {
+    margin: 4px 0 8px;
+    font-size: 13px;
 }
 
-.popup-details {
-    display: flex;
-    align-items: center;
-    margin-top: 5px;
+.popup-link {
+    font-weight: 600;
 }
 
-.popup-icon {
-    width: 20px;
-    height: 20px;
-    margin-right: 5px;
+.popup-link a {
+    color: #0070df;
 }
-
-.popup-content h4 {
-    font-size: 22px;
-    margin-bottom: 5px;
-    text-align: center;
-    color: rgb(0, 112, 223);
-}
-
-.custom-icon {
-    font-size: 24px;
-    color: #3498db; /* Couleur de l'icône */
-}
-
-.bottom-section {
-            background-color: slategray;
-            padding: 20px 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .social-media {
-            text-align: center; /* Center the icons */
-            flex-grow: 1; /* Allow icons to take remaining space */
-        }
-
-        .social-icon {
-            display: inline-block;
-            margin: 0 10px;
-            width: 80px;
-            height: 30px;
-        }
-
-        .social-icon img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        /* New style for the text */
-        .network-text {
-            text-align: left;
-            padding-left: 20px;
-            color: white;
-            font-size: 18px;
-        }
-         .about-link {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            color: white;
-            margin-right: 20px;
-        }
-
-        .about-icon {
-            width: 20px;
-            height: 20px;
-            margin-right: 5px;
-        }
-        
