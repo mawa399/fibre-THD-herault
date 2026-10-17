@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>À propos – Fibre Hérault</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body { display: block; height: auto; }
+    .about { max-width: 720px; margin: 0 auto; padding-block: 40px 64px; padding-inline: max(16px, env(safe-area-inset-left, 0px)) max(16px, env(safe-area-inset-right, 0px)); }
+    .about h1 { font: 700 clamp(28px, 5vw, 40px)/1.1 var(--f-display); letter-spacing: -.02em; margin: 0 0 12px; text-wrap: balance; }
+    .about h2 { font: 700 20px/1.2 var(--f-display); margin: 36px 0 10px; }
+    .about p, .about li { max-width: 65ch; }
+    .lead { font-size: 17px; color: var(--muted); }
+    .statuts { list-style: none; padding: 0; display: grid; gap: 12px; }
+    .statuts li { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; align-items: start; }
+    .statuts .pill { grid-row: span 2; margin-top: 2px; }
+    .stack { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; list-style: none; }
+    .stack li { font-family: var(--f-mono); font-size: 13px; padding: 4px 10px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); }
+    .back { display: inline-block; margin-top: 36px; font-weight: 600; }
+    dl.meta { display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; }
+    dl.meta dt { color: var(--muted); }
+    dl.meta dd { margin: 0; }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="Retour à la carte">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+        <circle cx="16" cy="16" r="15" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path d="M4 20c5-9 11-9 13-4s8 5 11-4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+        <circle cx="28" cy="12" r="2.6" fill="currentColor"/>
+      </svg>
+      <span class="brand-text">
+        <span class="brand-title">Fibre Hérault</span>
+        <span class="brand-sub">Éligibilité des immeubles à la fibre optique</span>
+      </span>
+    </a>
+    <nav class="topnav" style="margin-left:auto"><a href="./">Carte</a></nav>
+  </header>
+
+  <main class="about">
+    <h1>Cartographie interactive du Très Haut Débit</h1>
+    <p class="lead">Cette carte permet de vérifier si un immeuble de l'Hérault est éligible à la fibre optique, de retrouver son adresse telle qu'elle est enregistrée chez les opérateurs et de savoir qui déploie le réseau dans son secteur.</p>
+
+    <h2>Les trois statuts</h2>
+    <ul class="statuts">
+      <li><span class="pill ok">Éligible</span><span>Le logement peut déjà souscrire à une offre fibre auprès d'un opérateur commercial.</span></li>
+      <li><span class="pill dem">Raccordable à la demande</span><span>Des travaux complémentaires sont nécessaires, par exemple à cause de l'éloignement du réseau. L'habitant souscrit d'abord, puis le raccordement est réalisé dans un délai de 6 mois.</span></li>
+      <li><span class="pill non">Pas encore éligible</span><span>Les travaux ou les démarches nécessaires au raccordement final ne sont pas encore terminés.</span></li>
+    </ul>
+
+    <h2>Les données</h2>
+    <p>Les immeubles proviennent du jeu de données « IPE – Déploiement du très haut débit par immeuble » publié par le Conseil départemental de l'Hérault sur <a href="https://www.herault-data.fr/explore/dataset/deploiement-hd-thd-ipe-immeuble-herault/" target="_blank" rel="noopener">Hérault Data</a>. Il est construit à partir des fichiers IPE (Informations Préalables Enrichies) transmis par les opérateurs qui déploient la fibre : Hérault Très Haut Débit sur le réseau public du Département, Orange et XpFibre/SFR en zone d'initiative privée.</p>
+    <p>La carte interroge directement l'API du portail : les données affichées sont donc toujours celles publiées par le Département.</p>
+    <dl class="meta">
+      <dt>Immeubles</dt><dd id="a-total">environ 435 000</dd>
+      <dt>Dernière mise à jour</dt><dd id="a-maj">–</dd>
+      <dt>Licence</dt><dd>Licence Ouverte / Open Licence (Etalab)</dd>
+    </dl>
+
+    <h2>Réalisation</h2>
+    <p>Projet réalisé par Mawa DIAW. La première version a été développée pendant mon alternance d'apprenti géomaticien au Conseil départemental de l'Hérault (2022-2023), dans le cadre de la Licence professionnelle SIG Web de l'IUT de Carcassonne. Elle reposait sur une base PostgreSQL/PostGIS et un service PHP. Cette nouvelle version interroge directement l'API open data et fonctionne sans serveur.</p>
+    <ul class="stack">
+      <li>Leaflet</li><li>JavaScript</li><li>API Opendatasoft (ODSQL)</li><li>Géoplateforme IGN</li><li>API Découpage administratif</li><li>GitHub Pages</li>
+    </ul>
+
+    <a class="back" href="./">← Retour à la carte</a>
+  </main>
+
+  <script>
+    fetch("https://www.herault-data.fr/api/explore/v2.1/catalog/datasets/deploiement-hd-thd-ipe-immeuble-herault")
+      .then((r) => r.json())
+      .then((m) => {
+        const d = m?.metas?.default?.data_processed || m?.metas?.default?.modified;
+        if (d) document.getElementById("a-maj").textContent = new Date(d).toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
+        const n = m?.metas?.default?.records_count;
+        if (n) document.getElementById("a-total").textContent = new Intl.NumberFormat("fr-FR").format(n);
+      })
+      .catch(() => {});
+  </script>
+</body>
+</html>

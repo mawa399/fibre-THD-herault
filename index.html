@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fibre Hérault – Éligibilité des immeubles</title>
+  <meta name="description" content="Carte interactive de l'éligibilité des immeubles de l'Hérault à la fibre optique, à partir des données ouvertes du Département.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="Accueil">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+        <circle cx="16" cy="16" r="15" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path d="M4 20c5-9 11-9 13-4s8 5 11-4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+        <circle cx="28" cy="12" r="2.6" fill="currentColor"/>
+      </svg>
+      <span class="brand-text">
+        <span class="brand-title">Fibre Hérault</span>
+        <span class="brand-sub">Éligibilité des immeubles à la fibre optique</span>
+      </span>
+    </a>
+
+    <div class="search" role="search">
+      <label class="visually-hidden" for="search-input">Rechercher une adresse</label>
+      <input id="search-input" type="search" autocomplete="off" placeholder="Rechercher une adresse dans l'Hérault…" aria-controls="search-results" aria-expanded="false">
+      <ul id="search-results" class="search-results" role="listbox" hidden></ul>
+    </div>
+
+    <nav class="topnav">
+      <a href="apropos.html">À propos</a>
+    </nav>
+  </header>
+
+  <main class="layout">
+    <aside class="panel" aria-label="Statistiques et filtres">
+      <section class="block" aria-labelledby="stats-title">
+        <div class="block-head">
+          <p class="eyebrow" id="stats-scope">Département</p>
+          <button id="clear-commune" class="link-btn" type="button" hidden>Revenir à l'Hérault</button>
+        </div>
+        <h2 id="stats-title" class="stats-title">Hérault (34)</h2>
+        <p class="stats-total"><span id="stat-total" class="num">–</span> immeubles recensés</p>
+        <div id="stat-bar" class="stack-bar" role="img" aria-label="Répartition par statut"></div>
+        <ul id="stat-rows" class="stat-rows"></ul>
+      </section>
+
+      <section class="block" aria-labelledby="f-statut">
+        <h3 id="f-statut" class="block-title">Statut</h3>
+        <div id="filter-statuts" class="checks"></div>
+      </section>
+
+      <section class="block" aria-labelledby="f-zone">
+        <h3 id="f-zone" class="block-title">Zone de déploiement</h3>
+        <div id="filter-zones" class="checks"></div>
+      </section>
+
+      <section class="block legend" aria-labelledby="f-leg">
+        <h3 id="f-leg" class="block-title">Lecture de la carte</h3>
+        <p class="legend-text">Vue d'ensemble : une bulle par commune, de taille proportionnelle au nombre d'immeubles. Sa couleur indique la part d'immeubles éligibles.</p>
+        <ul class="legend-scale">
+          <li><span class="sw sw-ok"></span>95 % ou plus</li>
+          <li><span class="sw sw-dem"></span>de 80 à 95 %</li>
+          <li><span class="sw sw-non"></span>moins de 80 %</li>
+        </ul>
+        <p class="legend-text">Zoomez sur un quartier ou cliquez sur une commune pour voir chaque immeuble.</p>
+      </section>
+
+      <p class="source">Données : <a href="https://www.herault-data.fr/explore/dataset/deploiement-hd-thd-ipe-immeuble-herault/" target="_blank" rel="noopener">Hérault Data</a>, mise à jour du <span id="maj">–</span>.</p>
+    </aside>
+
+    <section class="map-wrap" aria-label="Carte">
+      <div id="map"></div>
+      <div id="map-status" class="map-status" role="status" aria-live="polite" hidden></div>
+    </section>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
