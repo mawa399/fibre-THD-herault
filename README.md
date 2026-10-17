@@ -2,6 +2,8 @@
 
 Carte interactive de l'éligibilité des immeubles de l'Hérault à la fibre optique.
 
+**Démo en ligne : [mawa399.github.io/fibre-THD-herault](https://mawa399.github.io/fibre-THD-herault/)**
+
 Pour chaque adresse du département, la carte indique si le logement est **éligible**, **raccordable à la demande** ou **pas encore éligible**, et quel opérateur déploie le réseau dans le secteur (Hérault Très Haut Débit, Orange ou XpFibre/SFR).
 
 ## Fonctionnalités
